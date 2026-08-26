@@ -22,19 +22,19 @@ The analysis mainly focuses on:
 
 ## Notebooks
 
-### 00_pull.ipynb
+### [00_pull.ipynb](code/00_pull.ipynb)
 
 Pulls the 2015 ACS census-tract data for New York City from the U.S. Census Bureau.
 
 **Output:** `data/acs2015_nyc_tracts_raw.csv`
 
-### 01_clean.ipynb
+### [01_clean.ipynb](code/01_clean.ipynb)
 
 Cleans up the ACS data, keeps Bronx and Manhattan census tracts, removes invalid observations, and creates the final analysis sample.
 
 **Output:** `data/acs2015_bronx_manhattan_clean.csv`
 
-### 02_analyze.ipynb
+### [02_analyze.ipynb](code/02_analyze.ipynb)
 
 Calculates borough-level summary statistics and compares commute time and public-transit use between the Bronx and Manhattan.
 
