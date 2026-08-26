@@ -28,6 +28,8 @@ The analysis mainly focuses on:
 
 ### [00_pull.ipynb](code/00_pull.ipynb)
 
+**Input:** U.S. Census Bureau 2015 ACS 5-year API
+
 Pulls the 2015 ACS census-tract data for New York City from the U.S. Census Bureau.
 
 **Output:** `data/acs2015_nyc_tracts_raw.csv`
