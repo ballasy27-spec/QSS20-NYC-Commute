@@ -36,11 +36,15 @@ Pulls the 2015 ACS census-tract data for New York City from the U.S. Census Bure
 
 ### [01_clean.ipynb](code/01_clean.ipynb)
 
+**Input:** `data/acs2015_nyc_tracts_raw.csv`
+
 Cleans up the ACS data, keeps Bronx and Manhattan census tracts, removes invalid observations, and creates the final analysis sample.
 
 **Output:** `data/acs2015_bronx_manhattan_clean.csv`
 
 ### [02_analyze.ipynb](code/02_analyze.ipynb)
+
+**Input:** `data/acs2015_bronx_manhattan_clean.csv`
 
 Calculates borough-level summary statistics and compares commute time and public-transit use between the Bronx and Manhattan.
 
