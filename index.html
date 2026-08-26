@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>NYC Commute Inequality</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: auto;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        h1, h2 {
+            color: #222;
+        }
+
+        img {
+            width: 100%;
+            max-width: 700px;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .finding {
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin: 25px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Public Transit and Commute Inequality in New York City</h1>
+
+    <p>
+        This project compares census tracts in the Bronx and Manhattan to examine
+        whether similar levels of public-transit use are associated with different
+        commuting outcomes.
+    </p>
+
+    <h2>Research Question</h2>
+
+    <p>
+        Do Bronx census tracts experience longer commute times than Manhattan
+        census tracts even though public-transit use is similar?
+    </p>
+
+    <h2>Data</h2>
+
+    <p>
+        I used 2015 American Community Survey 5-year estimates from the
+        U.S. Census Bureau. The final analysis contains 602 census tracts:
+        327 in the Bronx and 275 in Manhattan.
+    </p>
+
+    <h2>Method</h2>
+
+    <p>
+        I compare average commute time and public-transit use across the two
+        boroughs. I also examine neighborhood characteristics including income,
+        poverty, unemployment, and working from home.
+    </p>
+
+    <h2>Commute Time</h2>
+
+    <img src="output/mean_commute_by_borough.png"
+         alt="Bar chart comparing average commute time in the Bronx and Manhattan">
+
+    <p>
+        Bronx census tracts have an average commute time of about 42.6 minutes,
+        compared with about 30.8 minutes in Manhattan. The difference is
+        approximately 11.8 minutes.
+    </p>
+
+    <h2>Public-Transit Use</h2>
+
+    <img src="output/transit_use_by_borough.png"
+         alt="Bar chart comparing public-transit use in the Bronx and Manhattan">
+
+    <p>
+        Public-transit use is much more similar: approximately 59.1% in Bronx
+        census tracts and 58.1% in Manhattan census tracts.
+    </p>
+
+    <div class="finding">
+        <h2>Main Finding</h2>
+
+        <p>
+            Similar reliance on public transportation does not relate to
+            almost the same commuting outcomes. Bronx census tracts have
+            longer average commute times even though public-transit use is nearly
+            the same as in Manhattan.
+        </p>
+    </div>
+
+    <h2>Takeaway</h2>
+
+    <p>
+        Transportation inequality cannot be understood only by whether people
+        use public transit ir not. The community burden is shaped by  Where people live, where jobs are located, and
+        neighborhood socioeconomic conditions.
+        These results are descriptive and do not establish a causal relationship.
+    </p>
+
+</body>
+
+</html>
