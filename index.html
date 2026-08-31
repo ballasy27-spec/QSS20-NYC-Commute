@@ -3,35 +3,94 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>NYC Commute Inequality</title>
+
+    <!-- Chart.js lets us create extra graphs directly in the webpage -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 900px;
+            max-width: 950px;
             margin: auto;
             padding: 40px;
-            line-height: 1.6;
+            line-height: 1.7;
+            color: #222;
         }
 
-        h1, h2 {
-            color: #222;
+        h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 45px;
+            border-bottom: 2px solid #eeeeee;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            margin-top: 30px;
         }
 
         img {
             width: 100%;
             max-width: 700px;
             display: block;
-            margin: 20px auto;
+            margin: 25px auto;
         }
 
         .finding {
             background-color: #f2f2f2;
+            padding: 25px;
+            margin: 35px 0;
+            border-radius: 8px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background-color: #f7f7f7;
             padding: 20px;
-            margin: 25px 0;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .stat-box strong {
+            display: block;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 750px;
+            margin: 30px auto 50px auto;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #555;
+            margin-top: 15px;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+            color: #555;
         }
     </style>
 </head>
+
 
 <body>
 
@@ -43,6 +102,7 @@
         commuting outcomes.
     </p>
 
+
     <h2>Research Question</h2>
 
     <p>
@@ -50,62 +110,474 @@
         census tracts even though public-transit use is similar?
     </p>
 
+
     <h2>Data</h2>
 
     <p>
-        I used 2015 American Community Survey 5-year estimates from the
-        U.S. Census Bureau. The final analysis contains 602 census tracts:
+        I use the 2011–2015 American Community Survey 5-year estimates from
+        the U.S. Census Bureau. The final analysis contains 602 census tracts:
         327 in the Bronx and 275 in Manhattan.
     </p>
+
+    <div class="stat-grid">
+
+        <div class="stat-box">
+            <strong>602</strong>
+            Census tracts
+        </div>
+
+        <div class="stat-box">
+            <strong>327</strong>
+            Bronx tracts
+        </div>
+
+        <div class="stat-box">
+            <strong>275</strong>
+            Manhattan tracts
+        </div>
+
+        <div class="stat-box">
+            <strong>11.83 min</strong>
+            Commute gap
+        </div>
+
+    </div>
+
 
     <h2>Method</h2>
 
     <p>
-        I compare average commute time and public-transit use across the two
-        boroughs. I also examine neighborhood characteristics including income,
-        poverty, unemployment, and working from home.
+        The analysis is descriptive. I compare average commute time and
+        public-transit use across census tracts in the Bronx and Manhattan.
+        I also compare several socioeconomic characteristics, including poverty,
+        unemployment, household income, and working from home.
     </p>
+
+    <p>
+        Each census tract receives equal weight in the analysis. The results
+        therefore describe differences between the average census tract in each
+        borough rather than the commute experience of the average individual worker.
+    </p>
+
 
     <h2>Commute Time</h2>
 
-    <img src="output/mean_commute_by_borough.png"
-         alt="Bar chart comparing average commute time in the Bronx and Manhattan">
+    <img
+        src="output/mean_commute_by_borough.png"
+        alt="Bar chart comparing average commute time in the Bronx and Manhattan"
+    >
 
     <p>
-        Bronx census tracts have an average commute time of about 42.6 minutes,
-        compared with about 30.8 minutes in Manhattan. The difference is
-        approximately 11.8 minutes.
+        Bronx census tracts have an average commute time of 42.63 minutes,
+        compared with 30.80 minutes in Manhattan. This produces an observed
+        difference of 11.83 minutes.
     </p>
+
+    <p>
+        Relative to the Manhattan tract average, the Bronx tract average is
+        approximately 38% higher.
+    </p>
+
 
     <h2>Public-Transit Use</h2>
 
-    <img src="output/transit_use_by_borough.png"
-         alt="Bar chart comparing public-transit use in the Bronx and Manhattan">
+    <img
+        src="output/transit_use_by_borough.png"
+        alt="Bar chart comparing public-transit use in the Bronx and Manhattan"
+    >
 
     <p>
-        Public-transit use is much more similar: approximately 59.1% in Bronx
-        census tracts and 58.1% in Manhattan census tracts.
+        Public-transit use is much more similar. Approximately 59.05% of workers
+        in Bronx census tracts use public transportation, compared with 58.14%
+        in Manhattan census tracts.
     </p>
 
+    <p>
+        That is a difference of only 0.91 percentage points, even though the
+        commute-time difference is almost twelve minutes.
+    </p>
+
+
     <div class="finding">
+
         <h2>Main Finding</h2>
 
         <p>
-            Similar reliance on public transportation does not relate to
-            almost the same commuting outcomes. Bronx census tracts have
-            longer average commute times even though public-transit use is nearly
-            the same as in Manhattan.
+            The two boroughs have almost identical levels of public-transit use,
+            but very different average commute times. This suggests that transit
+            mode share alone does not fully describe transportation burden.
         </p>
+
     </div>
+
+
+    <!-- NEW ANALYSIS SECTION -->
+
+    <h2>Socioeconomic Context</h2>
+
+    <p>
+        The Bronx and Manhattan census tracts also differ substantially in
+        several socioeconomic characteristics. These comparisons provide
+        additional context for the commute-time difference, but they do not
+        establish that these factors cause the commute gap.
+    </p>
+
+
+    <h3>Poverty and Unemployment</h3>
+
+    <div class="chart-container">
+        <canvas id="economicChart"></canvas>
+    </div>
+
+    <p>
+        Average tract poverty is 29.59% in the Bronx compared with 17.56%
+        in Manhattan. Average unemployment is also higher in Bronx tracts,
+        at 13.91%, compared with 7.64% in Manhattan.
+    </p>
+
+
+    <h3>Working From Home</h3>
+
+    <div class="chart-container">
+        <canvas id="workHomeChart"></canvas>
+    </div>
+
+    <p>
+        Working from home is less common in the Bronx census tracts.
+        The average is 3.27% in the Bronx compared with 6.85% in Manhattan.
+        This is relevant because access to work-from-home opportunities may
+        affect who needs to commute regularly.
+    </p>
+
+
+    <h3>Household Income</h3>
+
+    <div class="chart-container">
+        <canvas id="incomeChart"></canvas>
+    </div>
+
+    <p>
+        The median across tract-level median household income estimates is
+        $33,095 in the Bronx and $81,250 in Manhattan.
+    </p>
+
+    <p>
+        These differences demonstrate that commuting takes place within very
+        different socioeconomic environments. However, this descriptive analysis
+        cannot determine how much income, poverty, unemployment, or working from
+        home contributes to the observed commute-time difference.
+    </p>
+
+
+    <h2>Comparing the Two Main Gaps</h2>
+
+    <div class="chart-container">
+        <canvas id="gapChart"></canvas>
+    </div>
+
+    <p>
+        This graph highlights the central result of the project. The average
+        commute time differs by 11.83 minutes between the two boroughs, while
+        average public-transit use differs by only 0.91 percentage points.
+    </p>
+
+    <p>
+        The comparison shows why public-transit use and commuting burden should
+        be treated as different measures.
+    </p>
+
 
     <h2>Takeaway</h2>
 
     <p>
-        Transportation inequality cannot be understood only by whether people
-        use public transit ir not. The community burden is shaped by  Where people live, where jobs are located, and
-        neighborhood socioeconomic conditions.
-        These results are descriptive and do not establish a causal relationship.
+        Transportation inequality cannot be understood only by asking whether
+        people use public transportation. Bronx and Manhattan census tracts have
+        nearly identical average transit-use rates but substantially different
+        average commute times.
     </p>
+
+    <p>
+        The results also show major socioeconomic differences between the two
+        groups of census tracts. Future research could examine station locations,
+        service frequency, transfers, employment locations, and the number of jobs
+        accessible from different neighborhoods.
+    </p>
+
+    <p>
+        These results are descriptive and do not establish a causal relationship
+        between neighborhood characteristics, transportation systems, and
+        commute time.
+    </p>
+
+
+    <footer>
+        <p>
+            Data source: U.S. Census Bureau, 2011–2015 American Community Survey
+            5-year estimates.
+        </p>
+    </footer>
+
+
+
+    <!-- EXTRA GRAPHS -->
+
+    <script>
+
+        /* Poverty and unemployment */
+
+        new Chart(
+            document.getElementById("economicChart"),
+            {
+                type: "bar",
+
+                data: {
+
+                    labels: [
+                        "Poverty",
+                        "Unemployment"
+                    ],
+
+                    datasets: [
+
+                        {
+                            label: "Bronx",
+                            data: [
+                                29.59,
+                                13.91
+                            ]
+                        },
+
+                        {
+                            label: "Manhattan",
+                            data: [
+                                17.56,
+                                7.64
+                            ]
+                        }
+
+                    ]
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    plugins: {
+
+                        title: {
+                            display: true,
+                            text: "Average Poverty and Unemployment by Borough"
+                        }
+
+                    },
+
+                    scales: {
+
+                        y: {
+                            beginAtZero: true,
+
+                            title: {
+                                display: true,
+                                text: "Percent"
+                            }
+                        }
+
+                    }
+                }
+            }
+        );
+
+
+
+        /* Work from home */
+
+        new Chart(
+            document.getElementById("workHomeChart"),
+            {
+                type: "bar",
+
+                data: {
+
+                    labels: [
+                        "Bronx",
+                        "Manhattan"
+                    ],
+
+                    datasets: [
+
+                        {
+                            label: "Worked From Home (%)",
+
+                            data: [
+                                3.27,
+                                6.85
+                            ]
+                        }
+
+                    ]
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    plugins: {
+
+                        title: {
+                            display: true,
+                            text: "Average Work-From-Home Rate"
+                        }
+
+                    },
+
+                    scales: {
+
+                        y: {
+                            beginAtZero: true,
+
+                            title: {
+                                display: true,
+                                text: "Percent"
+                            }
+                        }
+
+                    }
+                }
+            }
+        );
+
+
+
+        /* Household income */
+
+        new Chart(
+            document.getElementById("incomeChart"),
+            {
+                type: "bar",
+
+                data: {
+
+                    labels: [
+                        "Bronx",
+                        "Manhattan"
+                    ],
+
+                    datasets: [
+
+                        {
+                            label: "Median Household Income ($)",
+
+                            data: [
+                                33095,
+                                81250
+                            ]
+                        }
+
+                    ]
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    plugins: {
+
+                        title: {
+                            display: true,
+                            text: "Median of Tract-Level Median Household Income"
+                        }
+
+                    },
+
+                    scales: {
+
+                        y: {
+                            beginAtZero: true,
+
+                            title: {
+                                display: true,
+                                text: "Dollars"
+                            },
+
+                            ticks: {
+
+                                callback: function(value) {
+                                    return "$" + value.toLocaleString();
+                                }
+
+                            }
+                        }
+
+                    }
+                }
+            }
+        );
+
+
+
+        /* Main result comparison */
+
+        new Chart(
+            document.getElementById("gapChart"),
+            {
+                type: "bar",
+
+                data: {
+
+                    labels: [
+                        "Commute-Time Gap",
+                        "Transit-Use Gap"
+                    ],
+
+                    datasets: [
+
+                        {
+                            label: "Observed Difference",
+
+                            data: [
+                                11.83,
+                                0.91
+                            ]
+                        }
+
+                    ]
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    plugins: {
+
+                        title: {
+                            display: true,
+                            text: "Commute Difference vs. Transit-Use Difference"
+                        },
+
+                        subtitle: {
+                            display: true,
+                            text: "Commute gap is measured in minutes; transit gap is percentage points"
+                        }
+
+                    },
+
+                    scales: {
+
+                        y: {
+                            beginAtZero: true,
+
+                            title: {
+                                display: true,
+                                text: "Observed Difference"
+                            }
+                        }
+
+                    }
+                }
+            }
+        );
+
+    </script>
 
 </body>
 
